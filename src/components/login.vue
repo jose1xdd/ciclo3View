@@ -24,7 +24,7 @@
                                     </div>
 
 
-                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                                    <button class="btn btn-outline-light btn-lg px-5" v-on:click="processLogInUser" type="submit">Login</button>
 
                                 </div>
 
@@ -47,7 +47,7 @@ export default {
         return {
             user: {
                 username: "",
-                password: ""
+                password: "",
             }
         }
     },

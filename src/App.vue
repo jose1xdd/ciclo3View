@@ -10,13 +10,13 @@
           <a class="navbar-brand" href="#">MediClick</a>
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
             <li class="nav-item me-4">
-              <button v-if="is_auth" class="btn btn btn-outline-info"> Inicio </button>
+              <button v-if="is_auth" v-on:click="loadHome" class="btn btn btn-outline-info"> Inicio </button>
             </li>
             <li class="nav-item me-4">
-              <button v-if="is_auth" class="btn btn btn-outline-info"> Cuenta </button>
+              <button v-if="is_auth" v-on:click="loadAccount" class="btn btn btn-outline-info"> Cuenta </button>
             </li>
             <li class="nav-item me-4">
-              <button v-if="is_auth" class="btn btn btn-outline-info"> Cerrar Sesión </button>
+              <button v-if="is_auth" v-on:click="logOut" class="btn btn btn-outline-info"> Cerrar Sesión </button>
             </li>
             <li class="nav-item me-4">
               <button v-if="!is_auth" v-on:click="loadLogIn" class="btn btn btn-outline-info"
@@ -30,10 +30,10 @@
       </div>
     </nav>
     <div class="main-component">
-      <router-view v-on:completedLogIn="completedLogIn" v-on:completedSignUp="completedSignUp">
+      <router-view v-on:completedLogIn="completedLogIn" v-on:completedSignUp="completedSignUp" v-on:logOut="logOut">
       </router-view>
     </div>
-  </section>
+     </section>
 </template>
 <script>
 export default
@@ -49,8 +49,22 @@ export default
     },
     methods: {
       verifyAuth: function () {
+        this.is_auth = localStorage.getItem("isAuth") || false;
         if (this.is_auth == false)
           this.$router.push({ name: "Login" })
+        else
+          this.$router.push({ name: "home" });
+      },
+      logOut: function () {
+        localStorage.clear();
+        alert("Sesión Cerrada");
+        this.verifyAuth();
+      },
+      loadAccount:function(){
+        this.$router.push({ name: "account" });
+      },
+      loadHome: function () {
+        this.$router.push({ name: "home" });
       },
       loadLogIn: function () {
         this.$router.push({ name: "Login" })
@@ -58,8 +72,18 @@ export default
       loadSignUp: function () {
         this.$router.push({ name: "register" })
       },
-      completedLogIn: function (data) { },
-      completedSignUp: function (data) { },
+      completedLogIn: function (data) {
+        localStorage.setItem("isAuth", true);
+        localStorage.setItem("username", data.username);
+        localStorage.setItem("token_access", data.token_access);
+        localStorage.setItem("token_refresh", data.token_refresh);
+        alert("Autenticación Exitosa");
+        this.verifyAuth();
+      },
+      completedSignUp: function (data) {
+        alert("Registro Exitoso");
+        this.completedLogIn(data);
+      }
     },
     created
       : function () {

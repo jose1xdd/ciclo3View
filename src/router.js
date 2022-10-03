@@ -2,10 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import login from './components/login.vue'
 import register from './components/register.vue'
+import home from "./components/home.vue"
+import account from "./components/account.vue"
 const routes = [{
- path: '/',
- name: 'root',
- component: App
+    path: '/',
+    name: 'root',
+    component: App
 },
 {
     path: '/user/login',
@@ -14,11 +16,27 @@ const routes = [{
 },
 {
     path: '/user/register',
- name: 'register',
- component: register
-}]
+    name: 'register',
+    component: register
+},
+{
+    path: '/user/home',
+    name: "home",
+    component: home
+
+},
+{
+    path: '/user/account',
+    name: "account",
+    component: account
+
+}
+
+
+
+]
 const router = createRouter({
- history: createWebHistory(),
- routes
+    history: createWebHistory(),
+    routes
 })
 export default router
