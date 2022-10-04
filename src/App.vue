@@ -21,8 +21,12 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item ">Paciente</a></li>
                 <li><a class="dropdown-item">Familiar</a></li>
-                <li><a class="dropdown-item">Medico</a></li>
-                <li><a class="dropdown-item">Enfermero</a></li>
+                <li class="nav-item">
+                  <a v-if="is_auth" class="nav-link  text-black" v-on:click="loadMedico"> Medico</a>
+                </li>
+                <li class="nav-item">
+                  <a v-if="is_auth" class="nav-link  text-black" v-on:click="loadEnfermero"> Enfermero</a>
+                </li>
                 <li><a class="dropdown-item">Historia Clinica</a></li>
                 <li><a class="dropdown-item">Diagnostico</a></li>
                 <li><a class="dropdown-item">Signos Vitales</a></li>
@@ -92,6 +96,12 @@ export default
       },
       loadSignUp: function () {
         this.$router.push({ name: "register" })
+      },
+      loadMedico: function () {
+        this.$router.push({ name: "medico" })
+      },
+      loadEnfermero: function () {
+        this.$router.push({ name: "enfermero" })
       },
       completedLogIn: function (data) {
         localStorage.setItem("isAuth", true);
