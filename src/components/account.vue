@@ -75,7 +75,4 @@ export default {
     .cuenta{
         color: darkmagenta;
     }
-    .out{
-        color: blue;
-    }
 </style>

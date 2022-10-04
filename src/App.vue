@@ -19,7 +19,7 @@
               <a v-if="is_auth" class="nav-link dropdown-toggle  text-white" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false" v-on:click="">Gestiones</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item ">Paciente</a></li>
+                <li><a v-if="is_auth" v-on:click="loadcrudPaciente" class="dropdown-item ">Paciente</a></li>
                 <li><a class="dropdown-item">Familiar</a></li>
                 <li><a class="dropdown-item">Medico</a></li>
                 <li><a class="dropdown-item">Enfermero</a></li>
@@ -81,6 +81,9 @@ export default
         alert("Sesión Cerrada");
         this.verifyAuth();
       },
+      loadcrudPaciente:function(){
+        this.$router.push({name:"crudPaciente"})
+      },
       loadAccount: function () {
         this.$router.push({ name: "account" });
       },
@@ -95,7 +98,7 @@ export default
       },
       completedLogIn: function (data) {
         localStorage.setItem("isAuth", true);
-        localStorage.setItem("name", data.name);
+        localStorage.setItem("username", data.username);
         localStorage.setItem("token_access", data.token_access);
         localStorage.setItem("token_refresh", data.token_refresh);
         alert("Autenticación Exitosa");

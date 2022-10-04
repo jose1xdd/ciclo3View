@@ -1,6 +1,12 @@
 <template>
-    <div class="container d-flex justify-content-center">
-        <h1>¡Bienvenido <span> {{name}} </span>!</h1>
+    <div class="container d-flex justify-content-center mt-5">
+        <div class="row d-flex align-items-center">
+            <div class="col bg-white text-center rounded">
+                <h1>¡Bienvenido <span> {{name}} </span>!</h1>
+                <p class="fs-1">Mediclick Funcionando al 100% Listo para tus ordenes</p>
+            </div>
+
+        </div>
     </div>
 </template>
 <script>

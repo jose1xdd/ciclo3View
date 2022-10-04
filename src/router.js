@@ -4,6 +4,7 @@ import login from './components/login.vue'
 import register from './components/register.vue'
 import home from "./components/home.vue"
 import account from "./components/account.vue"
+import crudPaciente from "./components/crudPaciente.vue"
 const routes = [{
     path: '/',
     name: 'root',
@@ -29,6 +30,12 @@ const routes = [{
     path: '/user/account',
     name: "account",
     component: account
+
+},
+{
+    path: '/user/crudPaciente',
+    name: "crudPaciente",
+    component: crudPaciente
 
 }
 
