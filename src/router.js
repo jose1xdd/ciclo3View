@@ -5,6 +5,8 @@ import register from './components/register.vue'
 import home from "./components/home.vue"
 import account from "./components/account.vue"
 import crudPaciente from "./components/crudPaciente.vue"
+import medico from "./components/medico.vue"
+import enfermero from "./components/enfermero.vue"
 const routes = [{
     path: '/',
     name: 'root',
@@ -33,12 +35,24 @@ const routes = [{
 
 },
 {
+
     path: '/user/crudPaciente',
     name: "crudPaciente",
     component: crudPaciente
 
+},
+    path: '/user/medico',
+    name: "medico",
+    component: medico
+
 }
 
+{
+    path: '/user/enfermero',
+    name: "enfermero",
+            component: enfermero
+
+}
 
 
 ]
