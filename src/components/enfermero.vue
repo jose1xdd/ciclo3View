@@ -109,7 +109,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="Enfermero in Enfermeros" :key="Enfermero.id">
+        <tr v-for="Enfermero in Enfermeros" :key="Enfermero.cedula">
           <td>{{ Enfermero.name }}</td>
           <td>{{ Enfermero.familiar }}</td>
           <td>{{ Enfermero.Paciente }}</td>
@@ -127,20 +127,23 @@
         username: localStorage.getItem("username") || "none",
         Enfermeros: [],
         elementP: {
-          id: "",
-          name: "",
-          Historia: 0,
+          cedula: "",
+          nombre: "",
+          apellido: "",
+          direccion: "",
+          telefono: "",
+          ciudad: "",
+          fecha: "",
         },
         onlyOneP: {
-          name: "",
-          Historia: 0,
+          
         },
       };
     },
     methods: {
       processData: function () {
         axios
-          .get("https://mediclick-se.herokuapp.com", {
+          .get("https://mediclick-se.herokuapp.com/enfermero/", {
             headers: {},
           })
           .then((result) => {
@@ -154,7 +157,7 @@
       processCreate: function () {
         axios
           .post(
-            "https://mediclick-se.herokuapp.com",
+            "https://mediclick-se.herokuapp.com/enfermero/",
             this.elementP,
             {
               headers: {},
@@ -170,15 +173,15 @@
       processGetEnfermero: function () {
         axios
           .get(
-            `https://mediclick-se.herokuapp.com${this.elementP.id}`,
+            `https://mediclick-se.herokuapp.com/enfermero/${this.elementP.cedula}`,
             this.elementP,
             {
               headers: {},
             }
           )
           .then((result) => {
-            this.onlyOneP.name = result.data.name;
-            this.onlyOneP.familiar = result.data.familiar;
+            this.onlyOneP.nombre = result.data.nombre;
+            this.onlyOneP.cedula = result.data.cedula;
           })
           .catch((error) => {
             alert(error);
@@ -187,7 +190,7 @@
       processUpgrade: function () {
         axios
           .put(
-            `https://mediclick-se.herokuapp.com${this.elementP.id}`,
+            `https://mediclick-se.herokuapp.com/enfermero/${this.elementP.cedula}`,
             this.elementP,
             {
               headers: {},
@@ -203,7 +206,7 @@
       processDelete: function () {
         axios
           .delete(
-            `https://mediclick-se.herokuapp.com${this.elementP.id}`,
+            `https://mediclick-se.herokuapp.com/enfermero/${this.elementP.cedula}`,
             {
               headers: {},
             }
