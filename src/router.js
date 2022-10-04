@@ -40,17 +40,17 @@ const routes = [{
     name: "crudPaciente",
     component: crudPaciente
 
-},
+}, {
     path: '/user/medico',
     name: "medico",
     component: medico
 
-}
+},
 
 {
     path: '/user/enfermero',
     name: "enfermero",
-            component: enfermero
+    component: enfermero
 
 }
 
