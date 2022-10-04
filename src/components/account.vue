@@ -1,9 +1,24 @@
 <template>
-    <div v-if="loaded" class="information">
-        <h1>Información de su cuenta</h1>
-        <h2>Nombre: <span>{{name}}</span></h2>
-        <h2>Correo electrónico: <span>{{email}}</span></h2>
+    <div v-if="loaded" class="container mt-5">
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 bg-white rounded">
+                <div class="container d-flex justify-content-center">
+                    <img src="../../img/png-clipart-user-login-mobile-phones-password-user-miscellaneous-blue.png"
+                        alt="" class="img-fluid">
+                </div>
+                <div class="container d-flex flex-column">
+                    <h3 class="cuenta">Información de su cuenta</h3>
+                    <h3>Nombre: <span class="out">{{name}}</span></h3>
+                    <h3>User: <span class="out">{{username}}</span></h3>
+                    <h3>Correo electrónico: <span class="out">{{email}}</span></h3>
+                </div>
+            </div>
+
+        </div>
     </div>
+
+
 </template>
 <script>
 import jwt_decode from "jwt-decode";
@@ -12,6 +27,7 @@ export default {
     name: "account",
     data: function () {
         return {
+            username: localStorage.getItem('username') || "none",
             name: "",
             email: "",
             loaded: false,
@@ -29,6 +45,7 @@ export default {
 
             axios.get(`https://mediclick-se.herokuapp.com/user/${userId}/`, { headers: { 'Authorization': `Bearer ${token}` } })
                 .then((result) => {
+                    console.log(result.data.name);
                     this.name = result.data.name;
                     this.email = result.data.email;
                     this.loaded = true;
@@ -54,3 +71,11 @@ export default {
 }
 
 </script>
+<style>
+    .cuenta{
+        color: darkmagenta;
+    }
+    .out{
+        color: blue;
+    }
+</style>
